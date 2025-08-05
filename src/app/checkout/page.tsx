@@ -28,10 +28,10 @@ const CheckoutPage = () => {
         const getBill = () => {
             let sum = 0;
             products?.forEach((pro: ICartItem) => {
-                sum += Number(pro.product.price.retail);
+                sum += Number(pro.product.price.retail * pro.quantity);
             });
 
-            const shipping = products && products.length > 0 ? 10 : 0;
+            const shipping = 0;
 
             setBill({
                 subTotal: sum,
@@ -77,7 +77,7 @@ const OrderItemsContainer = ({ products, bill }: { products: ICartItem[] | null,
             </div> : "Loading..."}
             <div>
                 <div className='font-semibold flex justify-between pt-5'>Subtotal <p>Rs. {bill.subTotal}</p></div>
-                <div className='font-semibold flex justify-between pb-5 border-b'>Shipping <p>Rs. {bill.shipping}</p></div>
+                <div className='font-semibold flex justify-between pb-5 border-b'>Shipping <p>Free</p></div>
                 <div className='font-semibold flex justify-between'>Total <p>Rs. {bill.total}</p></div>
             </div>
         </div>
@@ -121,7 +121,7 @@ const CheckoutForm = ({ items }) => {
                 method: "post",
                 baseURL: process.env.NEXT_PUBLIC_HOST_URL,
                 url: "/orders",
-                data: { items, shippingAddress: data, billingAddress: data, paymentMethod: "CASH_ON_DELIVERY", shippingCost: 10 }
+                data: { items, shippingAddress: data, billingAddress: data, paymentMethod: "CASH_ON_DELIVERY", shippingCost: 0 }
             })
             localStorage.removeItem("cart")
             alert(`Order Placed! \n Subtotal: \t Rs. ${res.data.data.order.subtotal}\n Shipping: \t Rs. ${res.data.data.order.shippingCost}\n Total: \t Rs. ${res.data.data.order.totalAmount}\n`);

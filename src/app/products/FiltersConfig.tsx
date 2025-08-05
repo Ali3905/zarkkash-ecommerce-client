@@ -29,26 +29,31 @@ export const filterConfig = [
     }
   },
   {
-    key: 'categories',
+    key: 'brands',
     component: SelectFilter,
     props: {
-      title: 'Categories',
+      title: 'Brands',
       options: [
-        { value: 'shirts', label: 'Shirts' },
-        { value: 'pants', label: 'Pants' },
-        { value: 'shoes', label: 'Shoes' },
-        { value: 'accessories', label: 'Accessories' },
-        { value: 'jackets', label: 'Jackets' }
+        { value: 'rolex', label: 'Rolex' },
+        { value: 'ap', label: 'Audemars Piguet' },
+        { value: 'tissot', label: 'Tissot' },
+        { value: 'hublot', label: 'Hublot' },
+        { value: 'pp', label: 'Patek Phillips' },
+        { value: 'aura', label: 'Arabic Aura' },
       ],
       multiple: true
     }
   },
-  // {
-  //   key: 'ratings',
-  //   component: RatingFilter,
-  //   props: {
-  //     title: 'Ratings',
-  //     maxRating: 5
-  //   }
-  // }
+  {
+    key: 'strap',
+    component: SelectFilter,
+    props: {
+      title: 'Strap',
+      options: [
+        { value: 'CHAIN', label: 'Chain' },
+        { value: 'BELT', label: 'Belt' },
+      ],
+      multiple: true
+    }
+  },
 ];

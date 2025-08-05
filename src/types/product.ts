@@ -11,6 +11,8 @@ export interface IProduct {
   coverImage: string;
   category?: string;
   subCategory?: string;
+  brandName: string;
+  strapType?: "CHAIN" | "BELT";
   gender?: "MALE" | "FEMALE" | "KIDS" | "UNISEX";
   sizes: Array<"XS" | "S" | "M" | "L" | "XL" | "XXL">;
   stock: number;

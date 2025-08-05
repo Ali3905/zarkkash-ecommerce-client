@@ -10,7 +10,8 @@ import { useSearchParams } from 'next/navigation'
 interface Filters {
   sizes?: string[],
   priceRange: { min: string, max: string },
-  categories: string[],
+  brands: string[],
+  strap: string[],
   ratings?: string[],
 }
 
@@ -45,7 +46,8 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
   const [filters, setFilters] = useState<Filters>({
     // sizes: [],
     priceRange: { min: '', max: '' },
-    categories: [],
+    brands: [],
+    strap: [],
     // ratings: []
   });
 
@@ -53,13 +55,13 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
   useEffect(() => {
     let filtered = [...products];
 
-    console.log({ filters, filtered });
-
     if (q && q !== "") {
       filtered = filtered.filter((product: IProduct) => {
         return product.title.toLowerCase().includes(q.toLowerCase()) || product?.subTitle?.toLowerCase().includes(q.toLowerCase()) || product.description.toLowerCase().includes(q.toLowerCase()) || product?.category?.includes(q.toLowerCase())
       })
     }
+
+    console.log({filters});
 
     // Size filter
     // if (filters?.sizes && filters?.sizes.length > 0) {
@@ -78,9 +80,14 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
     }
 
     // Category filter
-    if (filters.categories.length > 0) {
+    if (filters.brands.length > 0) {
       filtered = filtered.filter((product: IProduct) => {
-        return product.category && (filters.categories.includes(product?.category) || filters.categories.includes(product?.subCategory || ""))
+        return product.brandName && filters.brands.includes(product?.brandName.toLowerCase())
+      });
+    }
+    if (filters.strap.length > 0) {
+      filtered = filtered.filter((product: IProduct) => {
+        return product.strapType && filters.strap.includes(product?.strapType)
       });
     }
 
@@ -106,7 +113,8 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
     setFilters({
       // sizes: [],
       priceRange: { min: '', max: '' },
-      categories: [],
+      brands: [],
+      strap: [],
       // ratings: []
     });
   };

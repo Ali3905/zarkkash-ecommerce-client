@@ -13,10 +13,7 @@ const CreateProductPage = () => {
     });
 
     const categoryOptions = [
-        { value: 'airpods', label: 'Air Pods' },
-        { value: 'mobileCovers', label: 'Mobile Covers' },
-        { value: 'cables', label: 'Cables' },
-        { value: 'chargers', label: 'Chargers' },
+        { value: 'watches', label: 'Watches' },
     ];
 
     const formFields = [

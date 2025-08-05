@@ -34,6 +34,7 @@ const CartPage = () => {
             item.quantity = newQuantity;
             localStorage.setItem('cart', JSON.stringify(cart));
         }
+        getCart()
     };
     useEffect(() => {
         getCart()
@@ -43,10 +44,10 @@ const CartPage = () => {
         const getBill = () => {
             let sum = 0;
             products?.forEach((pro: ICartItem) => {
-                sum += Number(pro.product.price.retail);
+                sum += Number(pro.product.price.retail * pro.quantity);
             });
 
-            const shipping = products && products.length > 0 ? 10 : 0;
+            const shipping = 0;
 
             setBill({
                 subTotal: sum,
@@ -122,7 +123,7 @@ const BillCard = ({ bill }: { bill: { subTotal: number, shipping: number, total:
         <div className='sm:basis-[30%] w-full px-[20px] sm:px-[40px] py-[10px] sm:py-[50px] flex flex-col gap-4 border max-h-fit'>
             <p className='font-semibold text-[16px] uppercase'>Order Summary</p>
             <p className='font-medium flex justify-between'>Subtotal <p>Rs. {bill.subTotal}</p></p>
-            <p className='font-medium flex justify-between'>Shipping <p>Rs. {bill.shipping}</p></p>
+            <p className='font-medium flex justify-between'>Shipping <p>Free</p></p>
 
             <p className='font-medium  pt-[20px] border-t flex justify-between'>TOTAL(TAX INCL.) <p>Rs. {bill.total}</p></p>
             <button className='py-4 bg-gray-300 cursor-pointer' onClick={() => router.push("/checkout")}>CONTINUE</button>
