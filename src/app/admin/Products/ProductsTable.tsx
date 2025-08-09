@@ -2,10 +2,24 @@ import { IProduct } from '@/types/product';
 import Table from '@/components/Table';
 import { formatDate } from '@/utils/date';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 
 const ProductTable = ({ products }: { products: IProduct[] }) => {
     const router = useRouter();
+
+    const handleDeleteProduct = async(id) => {
+        try {
+            const res = await axios({
+                method: "delete",
+                baseURL: process.env.NEXT_PUBLIC_HOST_URL,
+                url: `/products/${id}`
+            })    
+            alert(`Product with ID ${id} has been deleted`)  
+        } catch (error) {
+            alert("Could not delete product")
+        }
+    }
 
     const columns = [
         {
@@ -82,7 +96,7 @@ const ProductTable = ({ products }: { products: IProduct[] }) => {
                         className="text-red-600 hover:underline"
                         onClick={(e) => {
                             e.stopPropagation();
-                            alert(`Delete product: ${row.title}`);
+                            handleDeleteProduct(row._id)
                             // or call delete API
                         }}
                     >
