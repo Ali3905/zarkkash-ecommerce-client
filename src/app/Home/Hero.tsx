@@ -10,9 +10,9 @@ const Hero = () => {
     return (
         <div className='max-w-[1600px] mx-auto sm:px-[70px] px-[10px]'>
             <div className='flex flex-col items-start'>
-                <p>Men</p>
+                {/* <p>Men</p>
                 <p>Women</p>
-                <p>Kids</p>
+                <p>Kids</p> */}
                 <SearchBar />
             </div>
             <div className='flex flex-col sm:flex-row gap-[10px] mt-[50px]'>

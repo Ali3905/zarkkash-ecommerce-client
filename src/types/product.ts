@@ -12,6 +12,11 @@ export interface IProduct {
   category?: string;
   subCategory?: string;
   brandName: string;
+  variants: {
+    dialColor: string;
+    strapColor: string;
+    stock: number;
+  }[]
   strapType?: "CHAIN" | "BELT";
   gender?: "MALE" | "FEMALE" | "KIDS" | "UNISEX";
   sizes: Array<"XS" | "S" | "M" | "L" | "XL" | "XXL">;
@@ -26,5 +31,6 @@ export interface ICartItem {
   product: IProduct;
   quantity: number;
   color?: string;
+  variantIndex?: number; // Index of the selected variant
   size?: "XS" | "S" | "M" | "L" | "XL" | "XXL";
 }  

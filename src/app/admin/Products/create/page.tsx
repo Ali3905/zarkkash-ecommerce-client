@@ -24,7 +24,16 @@ const CreateProductPage = () => {
         { name: "price.display", placeholder: "Display Price", type: "number", validations: { required: "Display price is required", min: { value: 0, message: "Price must be positive" } } },
         { name: "category", placeholder: "Category", type: "select", validations: { required: "Category is required" }, options: categoryOptions },
         { name: "subCategory", placeholder: "Sub Category", type: "text", validations: { required: "Sub category is required" } },
-        { name: "brandName", placeholder: "Brand", type: "text", validations: { required: "Brand name is required" } },
+        {
+            name: "brandName", placeholder: "Brand", type: "select", options: [
+                { value: 'rolex', label: 'Rolex' },
+                { value: 'ap', label: 'Audemars Piguet' },
+                { value: 'tissot', label: 'Tissot' },
+                { value: 'hublot', label: 'Hublot' },
+                { value: 'pp', label: 'Patek Phillips' },
+                { value: 'aura', label: 'Arabic Aura' },
+            ], validations: { required: "Brand name is required" }
+        },
         {
             name: "strapType", placeholder: "Strap Type", type: "select", options: [
                 { label: "Chain", value: "CHAIN" },

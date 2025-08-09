@@ -14,7 +14,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
   const router = useRouter()
   return (
     <div className={`max-w-[430px] flex-grow cursor pointer opacity-100 active:opacity-90 cursor-pointer ${className}`} onClick={() => router.push(`/product/${product._id}`)}>
-      <Image src={product.coverImage} height={300} width={300} alt={product.title} className='w-full aspect-square' />
+      <Image src={product.coverImage} height={300} width={300} alt={product.title} className='w-full aspect-[4/5]' />
       <p className='text-[12px]'>{product.title}</p>
       <span className='flex justify-between font-semibold'>
         <p>{product.subTitle}</p>

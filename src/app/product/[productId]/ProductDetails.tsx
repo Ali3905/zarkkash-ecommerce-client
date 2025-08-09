@@ -6,7 +6,7 @@ import React, { useState } from "react";
 
 const ProductDetails = ({ id }: { id: number }) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState<number | null>(null);
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState<number | null>(0);
   const { data: product, isLoading, error } = useProduct({ id });
 
   console.log({ product });
@@ -70,12 +70,12 @@ const ProductDetails = ({ id }: { id: number }) => {
       <div className="sm:border rounded-lg px-[30px] py-[20px] flex flex-col basis-[30%]">
         <p className="font-semibold">{product.title}</p>
         <p className="">{product.subTitle}</p>
-        <div className="flex sm:flex-col flex-row-reverse justify-between items-center">
+        <div className="flex justify-between items-center">
           <span className="flex flex-col font-semibold mb-4">
             <p className="text-red-400 line-through">Rs. {product.price.display}</p>
             <p>Rs. {product.price.retail}</p>
           </span>
-          <p>MRP incl. of all taxes</p>
+          {/* <p>MRP incl. of all taxes</p> */}
         </div>
         <p className="font-semibold my-5">{product.description}</p>
 
