@@ -10,14 +10,14 @@ const ProductTable = ({ products }: { products: IProduct[] }) => {
 
     const handleDeleteProduct = async(id) => {
         try {
-            const res = await axios({
+            await axios({
                 method: "delete",
                 baseURL: process.env.NEXT_PUBLIC_HOST_URL,
                 url: `/products/${id}`
             })    
             alert(`Product with ID ${id} has been deleted`)  
         } catch (error) {
-            alert("Could not delete product")
+            alert(error?.response?.data?.message || "Could not delete product")
         }
     }
 
