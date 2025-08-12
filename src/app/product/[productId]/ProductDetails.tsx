@@ -1,8 +1,10 @@
 "use client";
+import Loader from "@/components/Loader";
 import useProduct from "@/Hooks/useProduct";
 import { ICartItem, IProduct } from "@/types/product";
 import Image from "next/image";
 import React, { useState } from "react";
+import { toast } from "sonner";
 
 const ProductDetails = ({ id }: { id: number }) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
@@ -13,17 +15,17 @@ const ProductDetails = ({ id }: { id: number }) => {
 
   const addToCart = (product: IProduct, quantity: number = 1) => {
     if (selectedVariantIndex === null) {
-      alert("Please select a variant before adding to cart");
+      toast.info("Please select a variant before adding to cart");
       return;
     }
 
     const selectedVariant = product.variants[selectedVariantIndex];
     if (selectedVariant.stock <= 0) {
-      alert("This variant is out of stock");
+      toast.info("This variant is out of stock");
       return;
     }
 
-    alert("Product added in cart");
+    toast.success("Product added in cart");
 
     const cart: ICartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -144,7 +146,7 @@ const ProductDetails = ({ id }: { id: number }) => {
       </div>
     </div>
   ) : isLoading ? (
-    <p>Loading...</p>
+    <Loader color='black' size={20} />
   ) : error ? (
     <p>{error}</p>
   ) : (

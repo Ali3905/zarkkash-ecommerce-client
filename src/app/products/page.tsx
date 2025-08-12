@@ -6,6 +6,7 @@ import ProductList from './ProductList'
 import useProducts from '../../Hooks/useProducts'
 import { IProduct } from '@/types/product'
 import { useSearchParams } from 'next/navigation'
+import Loader from '@/components/Loader'
 
 interface Filters {
   sizes?: string[],
@@ -28,7 +29,7 @@ const AllProductsPage = () => {
   return (
     <div>
       <Navbar handleOpenSidebar={handleOpen} />
-      <Suspense fallback={"Loading..."}>
+      <Suspense fallback={<Loader color='black' size={20} />}>
         <PageContainer handleCloseSidebar={handleClose} isOpen={isOpen} />
       </Suspense>
     </div>
@@ -122,7 +123,7 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
     <div className='flex gap-5 relative'>
       <Filters filters={filters} onClearAll={clearAllFilters} onFilterChange={handleFilterChange} handleClose={handleCloseSidebar} isOpen={isOpen} />
       {
-        isLoading ? "Loading..." : error ? error : <ProductList products={filteredProducts} />
+        isLoading ? <Loader color='black' size={20} /> : error ? error : <ProductList products={filteredProducts} />
       }
     </div>
   )

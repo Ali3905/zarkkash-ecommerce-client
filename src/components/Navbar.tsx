@@ -25,7 +25,7 @@ const Navbar = ({ handleOpenSidebar }) => {
 
 
     return (
-        <div className='flex items-center justify-between pt-[30px] pb-[10px] sm:px-[70px] px-[10px]  sticky top-0 left-0 bg-white z-50'>
+        <div className='flex items-center justify-between pt-[10px] pb-[10px] sm:px-[70px] px-[10px]  sticky top-0 left-0 bg-white z-50'>
             <div className='flex gap-[20px] items-center'>
                 {<Menu className='md:hidden block opacity-0' onClick={handleOpenSidebar} />}
                 <ul className='flex gap-[20px] items-center font-semibold'>
@@ -35,7 +35,7 @@ const Navbar = ({ handleOpenSidebar }) => {
                     </div>
                 </ul>
             </div>
-            <Image width={35} height={35} alt='logo' src={"/logo.png"} className='w-[50px] aspect-square' />
+            <Link href={"/"}><Image width={35} height={35} alt='logo' src={"/logo.jpg"} className='w-[70px] aspect-square' /></Link>
             <div className='flex items-center gap-[20px]'>
                 <button className='bg-black rounded-full px-5 py-2 text-white h-full cursor-pointer' onClick={() => router.push("/cart")}>Cart</button>
             </div>

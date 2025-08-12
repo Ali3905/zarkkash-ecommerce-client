@@ -8,12 +8,13 @@ import { Navigation } from 'swiper/modules';
 import useProducts from '../../Hooks/useProducts';
 import { useRouter } from 'next/navigation';
 import { IProduct } from '@/types/product';
+import Loader from '@/components/Loader';
 
 const RecentProducts = () => {
     const { products, isLoading, error } = useProducts();
     const router = useRouter();
 
-    if (isLoading) return <div>Loading products...</div>;
+    if (isLoading) return <Loader color='black' size={20} />;
     if (error) return <div>Error: {error}</div>;
 
     return (

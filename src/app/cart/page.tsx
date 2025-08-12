@@ -4,6 +4,7 @@ import ProductCard from '../Home/ProductCard'
 import { Minus, Plus, XCircle } from 'lucide-react'
 import { ICartItem } from '@/types/product'
 import { useRouter } from 'next/navigation'
+import Loader from '@/components/Loader'
 
 const CartPage = () => {
     // const { products, isLoading, error } = useProducts()
@@ -67,7 +68,7 @@ const CartPage = () => {
             <h2 className='font-bold text-[48px] border-b mb-[20px]'>Cart</h2>
             <div className='flex flex-col sm:flex-row items-start'>
                 {
-                    isLoading ? <p>Loading...</p> : error ? <p>{error}</p> : products && products.length > 0 ? <div className='flex flex-col sm:flex-row gap-5 flex-wrap sm:basis-[70%]'>
+                    isLoading ? <Loader color='black' size={20} /> : error ? <p>{error}</p> : products && products.length > 0 ? <div className='flex flex-col sm:flex-row gap-5 flex-wrap sm:basis-[70%]'>
                         {
                             products.map((pro: ICartItem) => {
                                 return <CartItem product={pro} handleRemove={removeFromCart} updateQuantity={updateQuantity} key={pro.product._id} />
@@ -104,8 +105,11 @@ const CartItem = ({ product, handleRemove, updateQuantity }: { product: ICartIte
             <div className='flex flex-col'>
                 <XCircle className='cursor-pointer' onClick={() => handleRemove(product.product._id)} />
                 <div className='mt-[50px]'>
-                    <p>L</p>
-                    <div className='w-full h-[40px] bg-black aspect-square mb-[10px]'></div>
+                    {/* <p>L</p> */}
+                    <div className='w-full h-[40px] flex border-1 aspect-square mb-[10px]'>
+                        <div className='w-1/2 h-full' style={{ backgroundColor: product.product.variants[product.variantIndex].dialColor }}></div>
+                        <div className='w-1/2 h-full' style={{ backgroundColor: product.product.variants[product.variantIndex].strapColor }}></div>
+                    </div>
                     <span>
                         <p className='p-2 border text-center cursor-pointer' onClick={increment}><Plus /></p>
                         <p className='p-2 border text-center'>{counter}</p>

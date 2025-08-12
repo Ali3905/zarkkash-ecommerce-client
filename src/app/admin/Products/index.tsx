@@ -3,6 +3,7 @@ import useProducts from '@/Hooks/useProducts'
 import React from 'react'
 import ProductTable from './ProductsTable'
 import { useRouter } from 'next/navigation'
+import Loader from '@/components/Loader'
 
 const ProductsPage = () => {
   const { products, isLoading, error } = useProducts()
@@ -14,7 +15,7 @@ const ProductsPage = () => {
         <button className='bg-gray-300 font-semibold px-10 py-2 rounded-md' onClick={()=>router.push("/admin/Products/create")}>Create</button>
       </div>
       {
-        products && !isLoading ? <ProductTable products={products} /> : isLoading ? <p>Loading...</p> : <p>{error}</p>
+        products && !isLoading ? <ProductTable products={products} /> : isLoading ? <Loader color='black' size={20} /> : <p>{error}</p>
       }
     </div>
   )

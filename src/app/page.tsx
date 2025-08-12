@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "../components/Navbar";
 // import Collections from "./Home/Collections";
 import Hero from "./Home/Hero";
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <RecentProducts />
+      <Footer />
       {/* <Collections /> */}
     </div>
   );

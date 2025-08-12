@@ -1,10 +1,12 @@
 "use client"
 import { DynamicField, FormField } from '@/components/Form';
+import Loader from '@/components/Loader';
 import { ICartItem } from '@/types/product';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 const CheckoutPage = () => {
     const [products, setProducts] = useState<ICartItem[] | null>([])
@@ -74,7 +76,7 @@ const OrderItemsContainer = ({ products, bill }: { products: ICartItem[] | null,
                         </div>
                     })
                 }
-            </div> : "Loading..."}
+            </div> : <Loader color='black' size={20} />}
             <div>
                 <div className='font-semibold flex justify-between pt-5'>Subtotal <p>Rs. {bill.subTotal}</p></div>
                 <div className='font-semibold flex justify-between pb-5 border-b'>Shipping <p>Free</p></div>
@@ -106,7 +108,7 @@ const CheckoutForm = ({ items }) => {
 
     const onSubmit = async (data) => {
         if (!items) {
-            alert("Atleast Add one item in cart to place order")
+            toast.warning("Atleast Add one item in cart to place order")
             return;
         }
 
@@ -124,9 +126,9 @@ const CheckoutForm = ({ items }) => {
                 data: { items, shippingAddress: data, billingAddress: data, paymentMethod: "CASH_ON_DELIVERY", shippingCost: 0 }
             })
             localStorage.removeItem("cart")
-            alert(`Order Placed! \n Subtotal: \t Rs. ${res.data.data.order.subtotal}\n Shipping: \t Rs. ${res.data.data.order.shippingCost}\n Total: \t Rs. ${res.data.data.order.totalAmount}\n`);
+            toast.success(`Order Placed! \n Subtotal: \t Rs. ${res.data.data.order.subtotal}\n Shipping: \t Rs. ${res.data.data.order.shippingCost}\n Total: \t Rs. ${res.data.data.order.totalAmount}\n`);
         } catch (error) {
-            alert(error?.response?.data?.message || "Could not place order please try again")
+            toast.error(error?.response?.data?.message || "Could not place order please try again")
         }
     };
 
@@ -176,7 +178,7 @@ const CheckoutForm = ({ items }) => {
                         {isSubmitting && (
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         )}
-                        <span>{isSubmitting ? 'Loading...' : 'Checkout'}</span>
+                        <span>{isSubmitting ? <Loader color='black' size={20} /> : 'Checkout'}</span>
                     </button>
                 </div>
             </div>
