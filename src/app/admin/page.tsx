@@ -6,7 +6,6 @@ import Orders from './orders'
 import Sidebar from './Sidebar';
 import { IDType, NavItems } from '@/types/navItem';
 import Products from './Products';
-import { checkAdminAuth } from '@/utils/auth';
 import { useCheckAdminAuthClient } from '@/Hooks/useCheckAdminAuthClientSide';
 import Loader from '@/components/Loader';
 

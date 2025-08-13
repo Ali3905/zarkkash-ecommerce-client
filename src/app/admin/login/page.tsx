@@ -38,7 +38,7 @@ const AdminLoginPage = () => {
                 toast.error(res.data.message || "Invalid credentials");
                 reset()
             }
-        } catch (error: any) {
+        } catch (error) {
             console.error(error);
             toast.error(error.response?.data?.message || "Login failed");
             reset()

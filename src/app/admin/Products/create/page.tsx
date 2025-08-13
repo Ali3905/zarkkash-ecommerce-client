@@ -1,11 +1,14 @@
 "use client"
 
 import { DynamicField, FormField } from "@/components/Form";
+import Loader from "@/components/Loader";
+import { useCheckAdminAuthClient } from "@/Hooks/useCheckAdminAuthClientSide";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const AdminLoginPage = () => {
+  const { admin, isLoading } = useCheckAdminAuthClient()
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm({
@@ -37,13 +40,16 @@ const AdminLoginPage = () => {
       } else {
         alert(res.data.message || "Invalid credentials");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
       alert(error.response?.data?.message || "Login failed");
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading) return <Loader size={20} />
+    if (!admin && !isLoading) return;
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
