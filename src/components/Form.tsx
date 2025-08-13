@@ -158,6 +158,9 @@ export const DynamicField = ({ field, register, control, errors }) => {
         case 'number':
             return <TextInput {...commonProps} type="number" />;
 
+        case 'password':
+            return <TextInput {...commonProps} type="password" />;
+
         case 'select':
             return <Select {...commonProps} options={field.options} />;
 

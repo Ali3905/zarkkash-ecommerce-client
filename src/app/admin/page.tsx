@@ -1,11 +1,14 @@
 "use client"
 import { useState } from 'react';
 import { Menu, Home, User, Settings } from 'lucide-react';
-import {  Dashboard, SettingsPage } from './components';
+import { Dashboard, SettingsPage } from './components';
 import Orders from './orders'
 import Sidebar from './Sidebar';
 import { IDType, NavItems } from '@/types/navItem';
 import Products from './Products';
+import { checkAdminAuth } from '@/utils/auth';
+import { useCheckAdminAuthClient } from '@/Hooks/useCheckAdminAuthClientSide';
+import Loader from '@/components/Loader';
 
 
 
@@ -19,6 +22,7 @@ const navItems: NavItems = [
 ];
 
 export default function Layout() {
+    const { admin, isLoading } = useCheckAdminAuthClient()
     const [activeTab, setActiveTab] = useState<IDType>('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
@@ -27,6 +31,9 @@ export default function Layout() {
     const onClose = () => {
         setSidebarOpen(false)
     }
+
+    if (isLoading) return <Loader size={20} />
+    if (!admin && !isLoading) return;
 
     return (
         <div className="flex h-screen bg-gray-100">
