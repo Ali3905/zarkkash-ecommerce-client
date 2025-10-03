@@ -11,6 +11,7 @@ import Loader from '@/components/Loader'
 interface Filters {
   sizes?: string[],
   priceRange: { min: string, max: string },
+  categories: string[],
   brands: string[],
   strap: string[],
   ratings?: string[],
@@ -47,6 +48,7 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
   const [filters, setFilters] = useState<Filters>({
     // sizes: [],
     priceRange: { min: '', max: '' },
+    categories: [],
     brands: [],
     strap: [],
     // ratings: []
@@ -64,12 +66,12 @@ const PageContainer = ({ handleCloseSidebar, isOpen }) => {
 
     console.log({filters});
 
-    // Size filter
-    // if (filters?.sizes && filters?.sizes.length > 0) {
-    //   filtered = filtered.filter((product: IProduct) => {
-    //     return product?.sizes.some((si: string) => filters?.sizes?.includes(si))
-    //   });
-    // }
+    // Category filter
+    if (filters?.categories && filters?.categories.length > 0) {
+      filtered = filtered.filter((product: IProduct) => {
+        return product.category && filters.categories.includes(product?.category.toLowerCase())
+      });
+    }
 
     // Price range filter
     if (filters.priceRange.min !== '' || filters.priceRange.max !== '') {

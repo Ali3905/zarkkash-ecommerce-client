@@ -17,6 +17,7 @@ const CreateProductPage = () => {
   });
 
   const categoryOptions = [
+    { value: 'bags', label: 'Bags' },
     { value: 'watches', label: 'Watches' },
   ];
 
@@ -124,13 +125,6 @@ const CreateProductPage = () => {
         <h1 className="text-3xl font-bold text-gray-900">Create Product</h1>
         <p className="text-gray-600 mt-2">Fill in the details to create a new product</p>
       </div>
-
-
-
-
-
-
-
 
       <div className="space-y-8">
         {/* Basic Fields */}

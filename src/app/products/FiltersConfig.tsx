@@ -29,6 +29,18 @@ export const filterConfig = [
     }
   },
   {
+    key: 'categories',
+    component: SelectFilter,
+    props: {
+      title: 'Categories',
+      options: [
+        { value: 'watches', label: 'Watches' },
+        { value: 'bags', label: 'Bags' },
+      ],
+      multiple: true
+    }
+  },
+  {
     key: 'brands',
     component: SelectFilter,
     props: {
